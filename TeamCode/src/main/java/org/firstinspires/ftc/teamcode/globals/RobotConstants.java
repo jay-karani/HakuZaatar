@@ -28,14 +28,14 @@ public class RobotConstants {
     public static final double analogMax = 3.1865;
     public static final double driveServoCaching = 0.0001;
 
-    public static PIDFCoefficients flPIDF = new PIDFCoefficients(0.2, 0, 0, 0);
-    public static double flOffset = 1.9;
+    public static PIDFCoefficients flPIDF = new PIDFCoefficients(0.15, 0, 0.002, 0.07);
+    public static double flOffset = 1.92;
 
-    public static double blOffset = 0.1;
+    public static double blOffset = 0.05;
 
-    public static double brOffset = 2.6;
+    public static double brOffset = 2.7;
 
-    public static double frOffset = 0;
+    public static double frOffset = 0.2;
 
     //pose converters
     public static Pose2D pedroToFTC(Pose pose) {

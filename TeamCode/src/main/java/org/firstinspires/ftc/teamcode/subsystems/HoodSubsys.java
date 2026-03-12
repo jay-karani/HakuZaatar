@@ -17,13 +17,6 @@ public class HoodSubsys extends SubsystemBase {
 
     public HoodSubsys(final HardwareMap hwMap){
         hoodServo = new ServoEx(hwMap, RobotConstants.hood_name);
-    }
-
-    public void hoodTo(double position){
-        double clampedPos = MathUtils.clamp(position, RobotConstants.hoodMin, RobotConstants.hoodMax);
-        this.hoodPos = clampedPos;
-        hoodServo.set(this.hoodPos);
-
         hoodLUT = new LUT<Double, Double>(){{
             add(43.7, 0.0);
             add(61.6, 0.5);
@@ -33,6 +26,14 @@ public class HoodSubsys extends SubsystemBase {
             add(138.2, 1.0);
             add(160.3, 1.0);
         }};
+    }
+
+    public void hoodTo(double position){
+        double clampedPos = MathUtils.clamp(position, RobotConstants.hoodMin, RobotConstants.hoodMax);
+        this.hoodPos = clampedPos;
+        hoodServo.set(this.hoodPos);
+
+
 
     }
 
