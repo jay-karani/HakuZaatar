@@ -82,4 +82,6 @@ public class RobotConstants {
     public static final String stopperName = "stopper";
     public static double stopperMin = 0.41;
     public static double stopperMax = 0.28;
+
+    public static Pose startingPosition = new Pose(0, 0, 0);
 }
