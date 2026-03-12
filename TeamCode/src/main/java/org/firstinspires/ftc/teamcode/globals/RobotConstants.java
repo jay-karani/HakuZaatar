@@ -20,6 +20,8 @@ public class RobotConstants {
     public static Pose redGoal = new Pose(144 ,144);
     public static Pose blueGoal = new Pose(0, 144);
 
+    public static double shotTimeMult = 1;
+
     //hood
     public static final String hood_name = "hood_servo";
     public static double hoodMax = 0.99, hoodMin = 0;
