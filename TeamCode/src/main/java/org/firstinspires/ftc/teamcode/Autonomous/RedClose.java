@@ -40,10 +40,11 @@ public class RedClose extends CommandOpMode {
 
     public final Pose startPose = new Pose(111, 135, Math.toRadians(270));
     public final Pose shootPose = new Pose(101, 104, Math.toRadians(0));
-    public final Pose secondLine = new Pose(103, 60, Math.toRadians(0));
+    public final Pose secondLine = new Pose(98, 60, Math.toRadians(0));
     public final Pose pickSecondLine = new Pose(131, 60, Math.toRadians(0));
-    public final Pose emptyGate = new Pose(132, 70, Math.toRadians(0));
-    public final Pose gate = new Pose(130, 64, Math.toRadians(45));
+    public final Pose backGate = new Pose(110, 78, Math.toRadians(0));
+    public final Pose emptyGate = new Pose(122, 78, Math.toRadians(0));
+    public final Pose gate = new Pose(147, 44, Math.toRadians(45));
 
     private PathChain shootPreload, goToSecondLine, goPickSecondLine, goEmptyGate, shootSecondLine, goOpenGate, shootGate;
 
@@ -60,8 +61,10 @@ public class RedClose extends CommandOpMode {
                 .setLinearHeadingInterpolation(secondLine.getHeading(), pickSecondLine.getHeading())
                 .build();
 
-        goEmptyGate = follower.pathBuilder().addPath(new BezierLine(pickSecondLine, emptyGate))
-                .setLinearHeadingInterpolation(pickSecondLine.getHeading(), emptyGate.getHeading())
+        goEmptyGate = follower.pathBuilder().addPath(new BezierLine(pickSecondLine, backGate))
+                .setLinearHeadingInterpolation(pickSecondLine.getHeading(), backGate.getHeading())
+                .addPath(new BezierLine(backGate, emptyGate))
+                .setLinearHeadingInterpolation(backGate.getHeading(), emptyGate.getHeading())
                 .build();
 
         shootSecondLine = follower.pathBuilder().addPath(new BezierLine(pickSecondLine, shootPose))
@@ -69,7 +72,7 @@ public class RedClose extends CommandOpMode {
                 .build();
 
 
-        goOpenGate = follower.pathBuilder().addPath(new BezierLine(pickSecondLine, gate))
+        goOpenGate = follower.pathBuilder().addPath(new BezierLine(shootPose, gate))
                 .setLinearHeadingInterpolation(shootPose.getHeading(), gate.getHeading())
                 .build();
 
@@ -123,11 +126,12 @@ public class RedClose extends CommandOpMode {
                         new InstantCommand(() -> shooterOn = !shooterOn),
                         new FollowPathCommand(follower, shootPreload, true),
                         new WaitCommand(500), new InstantCommand(() -> intake.runIntake(0.8)), new WaitCommand(1500),
-                        new InstantCommand(() -> intake.runIntake(0)),
+                        new InstantCommand(() -> intake.runIntake(0.3)),
                         new InstantCommand(() -> shooterOn = !shooterOn),
 
                         new FollowPathCommand(follower, goToSecondLine), new InstantCommand(() -> intake.runIntake(1)),
-                        new WaitCommand(10), new InstantCommand(() -> intake.runIntake(0)),
+                        new FollowPathCommand(follower, goPickSecondLine),
+                        new WaitCommand(100), new InstantCommand(() -> intake.runIntake(0.3)),
                         new FollowPathCommand(follower, goEmptyGate),
 
                         new ParallelCommandGroup(new FollowPathCommand(follower, shootSecondLine), new SequentialCommandGroup(
@@ -136,7 +140,7 @@ public class RedClose extends CommandOpMode {
                         new WaitCommand(650),
                         new InstantCommand(() -> intake.runIntake(0.8)),
                         new WaitCommand(1500),
-                        new InstantCommand(() -> intake.runIntake(0)),
+                        new InstantCommand(() -> intake.runIntake(0.3)),
                         new InstantCommand(() -> shooterOn = !shooterOn),
 
 

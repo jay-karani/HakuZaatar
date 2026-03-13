@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.pedroPathing;
 
+import com.pedropathing.control.PIDFCoefficients;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
@@ -17,7 +18,10 @@ import org.firstinspires.ftc.teamcode.globals.RobotConstants;
 
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
-            .mass(14);
+            .mass(14)
+            .forwardZeroPowerAcceleration(-114.816039)
+            .lateralZeroPowerAcceleration(-64.5960767)
+            .translationalPIDFCoefficients(new PIDFCoefficients(.07, 0, 0.008, 0.05));
 
     public static PinpointConstants localizerConstants = new PinpointConstants()
             .forwardPodY(-102.5/25.4)
@@ -28,7 +32,11 @@ public class Constants {
             .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
             .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD);
 
-    public static SwerveConstants swerveConstants = new SwerveConstants();
+    public static SwerveConstants swerveConstants = new SwerveConstants()
+            .xVelocity(63.737230)
+            .yVelocity(68.883364)
+            .maxPower(0.8);
+
 
     private static CoaxialPod leftFront(HardwareMap hardwareMap){
          CoaxialPod pod = new CoaxialPod(hardwareMap, "fl_motor", "fl_servo", "fl_analog", RobotConstants.flPIDF,
