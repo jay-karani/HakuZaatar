@@ -64,7 +64,6 @@ public class LocalizerSubsys extends SubsystemBase {
         return this.distanceToGoal;
     }
 
-    public Pose getPedroPose() {return this.pedroPose;}
 
     public Pose2D getFtcPose(){
         return this.ftcPose;
