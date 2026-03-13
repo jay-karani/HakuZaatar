@@ -7,8 +7,10 @@ import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
+import com.seattlesolvers.solverslib.util.InterpLUT;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 import org.firstinspires.ftc.teamcode.globals.RobotConstants;
@@ -69,5 +71,13 @@ public class LocalizerSubsys extends SubsystemBase {
     }
     public Vector getRobotVelocity(){
         return this.robotVelocity;
+    }
+
+    public Pose getPedroPose(){
+        return this.pedroPose;
+    }
+
+    public Pose getGoalPose(){
+        return this.goalPose;
     }
 }

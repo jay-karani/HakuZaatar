@@ -55,4 +55,8 @@ public class ShooterSubsys extends SubsystemBase {
         pidf.setPIDF(RobotConstants.shooterP, RobotConstants.shooterI,
                 RobotConstants.shooterD, RobotConstants.shooterF);
     }
+    public void idle(){
+        leftLeader.disable();
+        rightFollower.disable();
+    }
 }
