@@ -64,6 +64,7 @@ public class Robot{
     }
     public void idleIntake(){
         intake.idle();
+        stopper.stopperClose();
     }
 
     public void setShooterOn(boolean shooterState){

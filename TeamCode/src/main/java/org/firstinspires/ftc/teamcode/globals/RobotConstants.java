@@ -21,6 +21,8 @@ public class RobotConstants {
     public static RobotTeam robotTeam = RobotTeam.RED;
 
     public static Pose centerStart = new Pose(0, 0, 0);
+    public static Pose redFrontAuto = new Pose(112, 135, Math.toRadians(270));
+    public static Pose redBackAuto = new Pose(88, 8, Math.toRadians(0));
 
     // robot globals
     public static Pose lastPedroPose = new Pose(0, 0, 0);
