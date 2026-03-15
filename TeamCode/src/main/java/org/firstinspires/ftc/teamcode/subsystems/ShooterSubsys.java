@@ -56,7 +56,7 @@ public class ShooterSubsys extends SubsystemBase {
                 RobotConstants.shooterD, RobotConstants.shooterF);
     }
     public void idle(){
-        leftLeader.disable();
-        rightFollower.disable();
+        leftLeader.set(0);
+        rightFollower.set(0);
     }
 }

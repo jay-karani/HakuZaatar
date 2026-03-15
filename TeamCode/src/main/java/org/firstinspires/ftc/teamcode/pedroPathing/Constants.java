@@ -39,25 +39,25 @@ public class Constants {
 
 
     private static CoaxialPod leftFront(HardwareMap hardwareMap){
-         CoaxialPod pod = new CoaxialPod(hardwareMap, "fl_motor", "fl_servo", "fl_analog", RobotConstants.flPIDF,
+         CoaxialPod pod = new CoaxialPod(hardwareMap, "fl_motor", "fl_servo", "fl_analog", RobotConstants.swervePIDF,
                  DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, RobotConstants.flOffset, new Pose(139, 162),
                  0, RobotConstants.analogMax, false);
          pod.setServoCachingThreshold(RobotConstants.driveServoCaching); return pod;
     }
     private static CoaxialPod rightFront(HardwareMap hardwareMap){
-        CoaxialPod pod = new CoaxialPod(hardwareMap, "fr_motor", "fr_servo", "fr_analog", RobotConstants.flPIDF,
+        CoaxialPod pod = new CoaxialPod(hardwareMap, "fr_motor", "fr_servo", "fr_analog", RobotConstants.swervePIDF,
                 DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, RobotConstants.frOffset, new Pose(139, -162),
                 0, RobotConstants.analogMax, false);
         pod.setServoCachingThreshold(RobotConstants.driveServoCaching); return pod;
     }
     private static CoaxialPod leftBack(HardwareMap hardwareMap){
-        CoaxialPod pod = new CoaxialPod(hardwareMap, "bl_motor", "bl_servo", "bl_analog", RobotConstants.flPIDF,
+        CoaxialPod pod = new CoaxialPod(hardwareMap, "bl_motor", "bl_servo", "bl_analog", RobotConstants.swervePIDF,
                 DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, RobotConstants.blOffset, new Pose(-139, 162),
                 0, RobotConstants.analogMax, false);
         pod.setServoCachingThreshold(RobotConstants.driveServoCaching); return pod;
     }
     private static CoaxialPod rightBack(HardwareMap hardwareMap){
-        CoaxialPod pod = new CoaxialPod(hardwareMap, "br_motor", "br_servo", "br_analog", RobotConstants.flPIDF,
+        CoaxialPod pod = new CoaxialPod(hardwareMap, "br_motor", "br_servo", "br_analog", RobotConstants.swervePIDF,
                 DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, RobotConstants.brOffset, new Pose(-139, -162),
                 0, RobotConstants.analogMax, false);
         pod.setServoCachingThreshold(RobotConstants.driveServoCaching); return pod;

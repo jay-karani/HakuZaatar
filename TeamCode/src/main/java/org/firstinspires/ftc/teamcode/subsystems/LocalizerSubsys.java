@@ -18,13 +18,13 @@ import org.firstinspires.ftc.teamcode.globals.RobotConstants;
 public class LocalizerSubsys extends SubsystemBase {
 
     private Follower follower;
-    private Pose2D ftcPose;
-    private Pose pedroPose;
+    //private Pose2D ftcPose;
+    //private Pose pedroPose;
     private LLResult result;
     private Pose goalPose;
     private double distanceToGoal;
-    private Pose3D limelightPose;
-    private Vector robotVelocity;
+    //private Pose3D limelightPose;
+    //private Vector robotVelocity;
 
     private Limelight3A limelight;
 
@@ -48,35 +48,40 @@ public class LocalizerSubsys extends SubsystemBase {
 
     public void updateLocalization(){
         follower.update();
-        this.pedroPose = follower.getPose();
-        this.ftcPose = RobotConstants.pedroToFTC(this.pedroPose);
+        RobotConstants.lastPedroPose = follower.getPose();
+        RobotConstants.lastFTCPose = RobotConstants.pedroToFTC(RobotConstants.lastPedroPose);
 
         this.result = limelight.getLatestResult();
-        limelight.updateRobotOrientation(this.ftcPose.getHeading(AngleUnit.DEGREES));
+        limelight.updateRobotOrientation(RobotConstants.lastFTCPose.getHeading(AngleUnit.DEGREES) - RobotConstants.turretAngle);
         if (result != null && result.isValid()) {
-            this.limelightPose = result.getBotpose_MT2();
+            RobotConstants.lastLimelightPose = result.getBotpose_MT2();
         }
-        this.distanceToGoal = goalPose.distanceFrom(pedroPose);
-        this.robotVelocity = follower.getVelocity();
+        this.distanceToGoal = goalPose.distanceFrom(RobotConstants.lastPedroPose);
+        RobotConstants.lastVelocity = follower.getVelocity();
     }
 
     public double getDistance(){
         return this.distanceToGoal;
     }
 
-
     public Pose2D getFtcPose(){
-        return this.ftcPose;
+        return RobotConstants.lastFTCPose;
     }
     public Vector getRobotVelocity(){
-        return this.robotVelocity;
+        return RobotConstants.lastVelocity;
     }
 
     public Pose getPedroPose(){
-        return this.pedroPose;
+        return RobotConstants.lastPedroPose;
     }
 
     public Pose getGoalPose(){
         return this.goalPose;
+    }
+
+    public void relocalize(){
+        double x = RobotConstants.lastLimelightPose.getPosition().x;
+        double y = RobotConstants.lastLimelightPose.getPosition().y;
+        RobotConstants.lastFTCPose = new Pose2D(DistanceUnit.INCH, x, y, AngleUnit.DEGREES, RobotConstants.lastFTCPose.getHeading(AngleUnit.DEGREES));
     }
 }

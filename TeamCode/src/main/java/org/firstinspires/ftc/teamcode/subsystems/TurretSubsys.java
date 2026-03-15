@@ -24,6 +24,7 @@ public class TurretSubsys extends SubsystemBase {
     public void toAngle(double angle){
         double gearRatio = angle * 160.0 / 38.0 * 15.0 / 80.0;
         double servoTarget = RobotConstants.turretZero + (gearRatio / RobotConstants.turretServoRange);
+        RobotConstants.turretAngle = angle;
         leftTurret.set(servoTarget);
         rightTurret.set(servoTarget);
     }

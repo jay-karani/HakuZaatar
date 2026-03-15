@@ -46,7 +46,11 @@ public class Robot{
 
     public void backgroundUpdate(){
         localizer.updateLocalization();
-        doSOTM();
+        //doSOTM();
+        if (RobotConstants.shooterOn){
+            shooter.runLUT(localizer.getDistance());
+            hood.runLUT(localizer.getDistance());
+        }
     }
 
     public void runIntake(){
@@ -57,8 +61,12 @@ public class Robot{
         intake.runIntake(1);
         stopper.stopperOpen();
     }
-    public void stopIntake(){
-        intake.runIntake(0);
+    public void idleIntake(){
+        intake.idle();
+    }
+
+    public void setShooter(boolean shooterState){
+        RobotConstants.shooterOn = shooterState;
     }
 
     public void doSOTM(){
