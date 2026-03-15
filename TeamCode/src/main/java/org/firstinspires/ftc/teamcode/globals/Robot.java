@@ -46,6 +46,7 @@ public class Robot{
 
     public void backgroundUpdate(){
         localizer.updateLocalization();
+        turret.turretTrack(RobotConstants.lastPedroPose);
         //doSOTM();
         if (RobotConstants.shooterOn){
             shooter.runLUT(localizer.getDistance());
@@ -65,7 +66,7 @@ public class Robot{
         intake.idle();
     }
 
-    public void setShooter(boolean shooterState){
+    public void setShooterOn(boolean shooterState){
         RobotConstants.shooterOn = shooterState;
     }
 
@@ -88,5 +89,12 @@ public class Robot{
 
         double turretAngle = Math.atan2(dy, dx) - robotPose.getHeading();
         turret.toAngle(Math.toDegrees(turretAngle));
+    }
+
+    public void offsetTurret(double change){
+        turret.changeOffset(change);
+    }
+    public void offsetShooter(double change){
+        shooter.changeOffset(change);
     }
 }

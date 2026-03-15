@@ -29,7 +29,16 @@ public class IntakeSubsys extends SubsystemBase {
     }
 
     public void idle(){
-        rightLeader.set(RobotConstants.intakeBoost);
-        leftFollower.set(RobotConstants.intakeBoost);
+        if (RobotConstants.useBoost){
+            rightLeader.set(RobotConstants.intakeBoost);
+            leftFollower.set(RobotConstants.intakeBoost);
+        } else {
+            rightLeader.set(0);
+            leftFollower.set(0);
+        }
+    }
+
+    public void useBoost(boolean use){
+        RobotConstants.useBoost = use;
     }
 }

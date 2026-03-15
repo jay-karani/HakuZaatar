@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opModes;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.seattlesolvers.solverslib.command.CommandOpMode;
 import com.seattlesolvers.solverslib.command.RunCommand;
@@ -17,6 +18,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ShooterSubsys;
 import org.firstinspires.ftc.teamcode.subsystems.StopperSubsys;
 import org.firstinspires.ftc.teamcode.subsystems.TurretSubsys;
 
+@Disabled
 @Configurable
 @TeleOp
 public class RedTele extends CommandOpMode {

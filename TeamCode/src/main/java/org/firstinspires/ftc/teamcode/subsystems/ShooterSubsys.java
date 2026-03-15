@@ -13,6 +13,7 @@ public class ShooterSubsys extends SubsystemBase {
     private PIDFController pidf = new PIDFController(RobotConstants.shooterP, RobotConstants.shooterI,
             RobotConstants.shooterD, RobotConstants.shooterF);
     InterpLUT shooterLUT;
+    private double offset = 0;
 
     public ShooterSubsys(final HardwareMap hwMap){
         leftLeader =  new Motor(hwMap, RobotConstants.leftShooter).setInverted(RobotConstants.leftShooterReversed)
@@ -41,7 +42,7 @@ public class ShooterSubsys extends SubsystemBase {
 
     public void runLUT(double distance){
         double vel = leftLeader.getCorrectedVelocity();
-        double target = shooterLUT.get(distance);
+        double target = shooterLUT.get(distance + offset);
         double output = pidf.calculate(vel, target);
         leftLeader.set(output);
         rightFollower.set(output);
@@ -58,5 +59,9 @@ public class ShooterSubsys extends SubsystemBase {
     public void idle(){
         leftLeader.set(0);
         rightFollower.set(0);
+    }
+
+    public void changeOffset(double change){
+        offset += change;
     }
 }

@@ -55,7 +55,8 @@ public class RobotConstants {
     public static final String leftIntake = "left_intake";
     public static final String rightIntake = "right_intake";
     public static final boolean rightIntakeReversed = false;
-    public static double intakeBoost = 0;
+    public static double intakeBoost = 0.5;
+    public static boolean useBoost = true;
 
     //turret
     public static final String leftTurret = "left_turret";

@@ -12,6 +12,7 @@ public class TurretSubsys extends SubsystemBase {
 
     private ServoEx leftTurret, rightTurret;
     private Pose goalPose;
+    public double offset = 0;
 
     public TurretSubsys(final HardwareMap hwMap){
         leftTurret = new ServoEx(hwMap, RobotConstants.leftTurret);
@@ -22,7 +23,7 @@ public class TurretSubsys extends SubsystemBase {
     }
 
     public void toAngle(double angle){
-        double gearRatio = angle * 160.0 / 38.0 * 15.0 / 80.0;
+        double gearRatio = (angle + offset) * 160.0 / 38.0 * 15.0 / 80.0;
         double servoTarget = RobotConstants.turretZero + (gearRatio / RobotConstants.turretServoRange);
         RobotConstants.turretAngle = angle;
         leftTurret.set(servoTarget);
@@ -44,6 +45,10 @@ public class TurretSubsys extends SubsystemBase {
         turretAngleDeg = ((turretAngleDeg + 180) % 360) - 180;
 
         toAngle(turretAngleDeg);
+    }
+
+    public void changeOffset(double change){
+        this.offset += change;
     }
 
 }

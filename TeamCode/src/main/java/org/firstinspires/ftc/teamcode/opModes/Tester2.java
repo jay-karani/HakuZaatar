@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opModes;
 import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -10,6 +11,7 @@ import org.firstinspires.ftc.teamcode.globals.Robot;
 import org.firstinspires.ftc.teamcode.globals.RobotConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
+@Disabled
 @Configurable
 @TeleOp
 public class Tester2 extends OpMode {
